@@ -1,6 +1,7 @@
 
 header{
     background-color: black;
+    color: salmon;
 }
 
 nav{
@@ -9,5 +10,9 @@ color:black;
 }
 
 nav li {
-    display: inline-block; text-decoration: none;
+    display: inline-block; text-decoration: none; padding: 2%;
+}
+
+footer{
+    background-color: lightgrey;
 }
