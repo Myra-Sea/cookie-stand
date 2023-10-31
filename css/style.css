@@ -1,0 +1,13 @@
+
+header{
+    background-color: black;
+}
+
+nav{
+background-color: salmon;
+color:black;
+}
+
+nav li {
+    display: inline-block; text-decoration: none;
+}
