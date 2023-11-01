@@ -62,7 +62,7 @@
 // Create an element by using document.createElement
 // and place the kind of element inside of single quotes inside of parentheses afterwards
 
-// for example, to create an element to represent the article, you could write
+// So, for example, to create an element to represent the article, you could write
 // let newArticleElement = document.createElement('article')
 
 
@@ -224,25 +224,27 @@ function randomInRange(min, max) {
 //function ...
 
 
-//To create an element to insert into the HTML, we can use either an <article> or a <section> per cookie stand.  So let's use article
+//To create an element to insert into the HTML, we can use either an <article> or a <section> per cookie stand.  Let's use article
 ///Below creates a new article element called cookieArticle
 let cookieArticle = document.createElement('article');
 root.appendChild(cookieArticle);
+//Now that an <article> element exists, we can place the <h2> heading elements inside of it!
 
-
-//Creating the headings inside of the HTML would be:
+//Creating the h2 headings inside of the HTML would be:
 let heading = document.createElement('h2');
 cookieArticle.appendChild(heading);
 heading.textContent = city.location;
 // That should make the city appear on the screen
 
+//Also inside of the <article> element should be the unordered list that displays the business hours
 //There's no need to count how many hours, and we shouldn't either because hours of operation could change.  So it should instead be inferred by the length of the array.
+//Next to that, we also need to create an unordered list of the estimated number of cookies sales per hour
 //Creating an unordered list in the HTML is:
 let hoursList = document.createElement('ul');
 cookieArticle.appendChild(hoursList);
 
 for(let i=0; i<seattle.sales.length; i++) {
-    const salesItem = document.createElement('li');
+    let salesItem = document.createElement('li');
     hoursList.appendChild(salesItem);
     const salesInfo = `${timeSlot[i]}: ${seattle.sales[i]} cookies`;
     salesItem.textContent = salesInfo;
