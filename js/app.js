@@ -203,7 +203,6 @@ cookieArticle.appendChild(hoursList);
 
     let totalSold = 0;
 for(let i=0; i<timeSlot.length; i++) {
-    console.log(seattle.cookiesEachHour[i]);
     totalSold+=seattle.cookiesEachHour[i];
 } 
 
@@ -246,10 +245,9 @@ tokyo.estimate();
 ///Create a new section element for Tokyo called cookieSection1
 let cookieSection1 = document.createElement('section');
 javascriptContainer.appendChild(cookieSection1);
-//Now that an <section> element exists, we can place the <h2> heading elements inside of it!
 
 
-//Creating the h2 headings inside of the HTML would be:
+//Create an <h2> heading inside of the new section:
 let heading2 = document.createElement('h2');
 cookieSection1.appendChild(heading2);
 heading2.textContent = tokyo.city;
@@ -257,10 +255,9 @@ heading2.textContent = tokyo.city;
 
 
 
-//Creating an unordered list for Tokyo in the HTML:
+//Create an unordered list for Tokyo:
 let hoursList2 = document.createElement('ul');
 cookieSection1.appendChild(hoursList2);
-
 
 for(let i=0; i<tokyo.cookiesEachHour.length; i++) {
     let salesItem2 = document.createElement('li');
@@ -269,12 +266,12 @@ for(let i=0; i<tokyo.cookiesEachHour.length; i++) {
     salesItem2.textContent = salesInfo2;
 }
 
-
-    //generate random customers per hour
+//Generates random customers per hour
 function estimateCustomers(store){
     for(let i=0; i<timeSlot.length; i++) {
         const numberCustomers2 = randomInRange(store.min, store.max);
-        //push the random number of customers into the custEachHour array
+
+//Push that random number of customers into the custEachHour array
         store.custEachHour.push(numberCustomers2);
     }
 }
@@ -288,26 +285,23 @@ function estimateSales(store){
     return store.cookiesEachHour;
 }
 
-
 function randomInRange(min, max) {
     return Math.floor(Math.random() * (max - min +1) + min);
 }
 
 
-//Creating the line showing total sold
-
+//Create the total sold loop
 let totalSold2 = 0;
 for(let i=0; i<timeSlot.length; i++) {
-console.log(tokyo.cookiesEachHour[i]);
-totalSold+=tokyo.cookiesEachHour[i];
+totalSold2+=tokyo.cookiesEachHour[i];
 } 
 
-//Now to add the line at the bottom that is the totals
+//Add a line at the bottom showing that total
 const totalCookie2 = document.createElement('li');
 hoursList2.appendChild(totalCookie2);
-const totalInfo2 = `Total: ${totalSold} cookies sold`;
+const totalInfo2 = `Total: ${totalSold2} cookies sold`;
 totalCookie2.textContent = totalInfo2;
-//It appends to what we set as the ul on line 77
+//It appends to what we set as the ul
 
 
 
@@ -336,6 +330,64 @@ const dubai = {
 
 dubai.estimate();
 
+//Creates the Dubai heading:
+let cookieArticle2 = document.createElement('article');
+javascriptContainer.appendChild(cookieArticle2);
+
+let heading3 = document.createElement('h2');
+cookieArticle2.appendChild(heading3);
+heading3.textContent = dubai.city;
+
+
+//Create an unordered list for Dubai:
+let hoursList3 = document.createElement('ul');
+cookieArticle2.appendChild(hoursList3);
+
+
+for(let i=0; i<dubai.cookiesEachHour.length; i++) {
+    let salesItem3 = document.createElement('li');
+    hoursList3.appendChild(salesItem3);
+
+    let salesInfo3 = `${timeSlot[i]}: ${dubai.cookiesEachHour[i]} cookies`;
+    salesItem3.textContent = salesInfo3;
+}
+
+//Generate random customers per hour
+function estimateCustomers(store){
+    for(let i=0; i<timeSlot.length; i++) {
+        let numberCustomers3 = randomInRange(store.min, store.max);
+
+// Push the random number of customers into the custEachHour array
+        store.custEachHour.push(numberCustomers3);
+    }
+}
+
+function estimateSales(store){
+    estimateCustomers(store);
+    for(let i=0; i<timeSlot.length; i++) {
+        const hourSales = Math.ceil(store.custEachHour[i] * store.avgCookies); 
+        store.cookiesEachHour.push(hourSales);
+    }
+    return store.cookiesEachHour;
+}
+
+
+function randomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min +1) + min);
+}
+
+
+//Create the total sold loop
+let totalSold3 = 0;
+for(let i=0; i<timeSlot.length; i++) {
+totalSold3+=dubai.cookiesEachHour[i];
+} 
+
+//Add that total sold line at the bottom
+const totalCookie3 = document.createElement('li');
+hoursList3.appendChild(totalCookie3);
+const totalInfo3 = `Total: ${totalSold3} cookies sold`;
+totalCookie3.textContent = totalInfo3;
 
 
 
@@ -364,6 +416,67 @@ const paris = {
 paris.estimate();
 
 
+// //Creates the Paris heading:
+let cookieSection2 = document.createElement('section');
+javascriptContainer.appendChild(cookieSection2);
+
+let heading4 = document.createElement('h2');
+cookieSection2.appendChild(heading4);
+heading4.textContent = paris.city;
+
+
+// //Create an unordered list for Dubai:
+// let hoursList3 = document.createElement('ul');
+// cookieArticle2.appendChild(hoursList3);
+
+
+// for(let i=0; i<dubai.cookiesEachHour.length; i++) {
+//     let salesItem3 = document.createElement('li');
+//     hoursList3.appendChild(salesItem3);
+
+//     let salesInfo3 = `${timeSlot[i]}: ${dubai.cookiesEachHour[i]} cookies`;
+//     salesItem3.textContent = salesInfo3;
+// }
+
+// //Generate random customers per hour
+// function estimateCustomers(store){
+//     for(let i=0; i<timeSlot.length; i++) {
+//         let numberCustomers3 = randomInRange(store.min, store.max);
+
+// // Push the random number of customers into the custEachHour array
+//         store.custEachHour.push(numberCustomers3);
+//     }
+// }
+
+// function estimateSales(store){
+//     estimateCustomers(store);
+//     for(let i=0; i<timeSlot.length; i++) {
+//         const hourSales = Math.ceil(store.custEachHour[i] * store.avgCookies); 
+//         store.cookiesEachHour.push(hourSales);
+//     }
+//     return store.cookiesEachHour;
+// }
+
+
+// function randomInRange(min, max) {
+//     return Math.floor(Math.random() * (max - min +1) + min);
+// }
+
+
+// //Create the total sold loop
+// let totalSold3 = 0;
+// for(let i=0; i<timeSlot.length; i++) {
+// totalSold3+=dubai.cookiesEachHour[i];
+// } 
+
+// //Add that total sold line at the bottom
+// const totalCookie3 = document.createElement('li');
+// hoursList3.appendChild(totalCookie3);
+// const totalInfo3 = `Total: ${totalSold3} cookies sold`;
+// totalCookie3.textContent = totalInfo3;
+
+
+
 
 
 
@@ -389,6 +502,67 @@ const lima = {
 }
 
 lima.estimate();
+
+
+// //Creates the Dubai heading:
+// let cookieArticle2 = document.createElement('article');
+// javascriptContainer.appendChild(cookieArticle2);
+
+// let heading3 = document.createElement('h2');
+// cookieArticle2.appendChild(heading3);
+// heading3.textContent = dubai.city;
+
+
+// //Create an unordered list for Dubai:
+// let hoursList3 = document.createElement('ul');
+// cookieArticle2.appendChild(hoursList3);
+
+
+// for(let i=0; i<dubai.cookiesEachHour.length; i++) {
+//     let salesItem3 = document.createElement('li');
+//     hoursList3.appendChild(salesItem3);
+
+//     let salesInfo3 = `${timeSlot[i]}: ${dubai.cookiesEachHour[i]} cookies`;
+//     salesItem3.textContent = salesInfo3;
+// }
+
+// //Generate random customers per hour
+// function estimateCustomers(store){
+//     for(let i=0; i<timeSlot.length; i++) {
+//         let numberCustomers3 = randomInRange(store.min, store.max);
+
+// // Push the random number of customers into the custEachHour array
+//         store.custEachHour.push(numberCustomers3);
+//     }
+// }
+
+// function estimateSales(store){
+//     estimateCustomers(store);
+//     for(let i=0; i<timeSlot.length; i++) {
+//         const hourSales = Math.ceil(store.custEachHour[i] * store.avgCookies); 
+//         store.cookiesEachHour.push(hourSales);
+//     }
+//     return store.cookiesEachHour;
+// }
+
+
+// function randomInRange(min, max) {
+//     return Math.floor(Math.random() * (max - min +1) + min);
+// }
+
+
+// //Create the total sold loop
+// let totalSold3 = 0;
+// for(let i=0; i<timeSlot.length; i++) {
+// totalSold3+=dubai.cookiesEachHour[i];
+// } 
+
+// //Add that total sold line at the bottom
+// const totalCookie3 = document.createElement('li');
+// hoursList3.appendChild(totalCookie3);
+// const totalInfo3 = `Total: ${totalSold3} cookies sold`;
+// totalCookie3.textContent = totalInfo3;
+
 
 
 
