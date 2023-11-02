@@ -134,6 +134,10 @@ const seattle = {
 seattle.estimate();
 
 
+
+
+
+
 //To create an element to insert into the HTML, we can use either an <article> or a <section> per cookie stand.  Let's use article
 ///Below creates a new article element called cookieArticle
 let cookieArticle = document.createElement('article');
@@ -210,11 +214,14 @@ totalCookie.textContent = totalInfo;
 
 
 //--------------------------------------------
-    // Now repeating it for the other cities...
+//--------------------------------------------
+    // Now repeating the process for the other cities...
+//-----------------------------------------------
+// Tokyo
 
 // For Tokyo:
-//  the random number of customers needs to be between 3 and 24
-// the average number of cookies purchased per sale is 1.2
+// //  the random number of customers needs to be between 3 and 24
+// // the average number of cookies purchased per sale is 1.2
 
 let tokyo = {
     city: 'Tokyo',
@@ -227,61 +234,22 @@ let tokyo = {
         this.cookiesEachHour = estimateSales(this);},
 }
 
-// For Dubai:
-// the random number of customers needs to be between 11 and 38
-// the average number of cookies per sale is 3.7
-
-const dubai = {
-    city: 'Dubai',
-    min: 11,
-    max: 38,
-    avgCookies: 3.7,
-    custEachHour: [],
-    cookiesEachHour: [],
-    estimate:  function(){
-        this.cookiesEachHour = estimateSales(this);},
-}
-
-
-// For Paris:
-// the random number of customers needs to be between 20 and 38
-// the average number of cookies per sale is 2.3
-
-const paris = {
-    city: 'Paris',
-    min: 20,
-    max: 38,
-    avgCookies: 2.3,
-    custEachHour: [],
-    cookiesEachHour: [],
-    estimate:  function(){
-        this.cookiesEachHour = estimateSales(this);},
-}
-
-
-// For Lima:
-// the random number of customers needs to be between 2 and 16
-// the average number of cookies per sale is 4.6
-
-const lima = {
-    city: 'Lima',
-    min: 2,
-    max: 16,
-    avgCookies: 4.6,
-    custEachHour: [],
-    cookiesEachHour: [],
-    estimate:  function(){
-        this.cookiesEachHour = estimateSales(this);},
-}
-
+// //To access the value of the estimate key, you need to use object.estimate
 tokyo.estimate();
-paris.estimate();
-lima.estimate();
 
 
 
-//-----------------------------------------------
-// Tokyo
+//To create an element to insert into the HTML, we can use either an <article> or a <section> per cookie stand.  Let's use article
+///Below creates a new article element called cookieArticle2
+let cookieSection1 = document.createElement('section');
+javascriptContainer.appendChild(cookieSection1);
+//Now that an <article> element exists, we can place the <h2> heading elements inside of it!
+
+//Creating the h2 headings inside of the HTML would be:
+let heading2 = document.createElement('h2');
+cookieSection1.appendChild(heading2);
+heading2.textContent = tokyo.city;
+// That should make the city appear on the screen
 
 
 
@@ -319,3 +287,85 @@ lima.estimate();
 //     console.log(tokyo.cookiesEachHour[i]);
 //     totalSold2+=tokyo.cookiesEachHour[i];
 // } 
+
+
+
+
+// ----------------------------------------------
+// Dubai
+//-----------------------------------------------
+
+// For Dubai:
+// the random number of customers needs to be between 11 and 38
+// the average number of cookies per sale is 3.7
+
+const dubai = {
+    city: 'Dubai',
+    min: 11,
+    max: 38,
+    avgCookies: 3.7,
+    custEachHour: [],
+    cookiesEachHour: [],
+    estimate:  function(){
+        this.cookiesEachHour = estimateSales(this);},
+}
+
+dubai.estimate();
+
+
+
+
+
+
+// ----------------------------------------------
+// Paris
+//-----------------------------------------------
+
+// For Paris:
+// the random number of customers needs to be between 20 and 38
+// the average number of cookies per sale is 2.3
+
+const paris = {
+    city: 'Paris',
+    min: 20,
+    max: 38,
+    avgCookies: 2.3,
+    custEachHour: [],
+    cookiesEachHour: [],
+    estimate:  function(){
+        this.cookiesEachHour = estimateSales(this);},
+}
+
+
+paris.estimate();
+
+
+
+
+
+
+
+// ----------------------------------------------
+// Lima
+//-----------------------------------------------
+
+// For Lima:
+// the random number of customers needs to be between 2 and 16
+// the average number of cookies per sale is 4.6
+
+const lima = {
+    city: 'Lima',
+    min: 2,
+    max: 16,
+    avgCookies: 4.6,
+    custEachHour: [],
+    cookiesEachHour: [],
+    estimate:  function(){
+        this.cookiesEachHour = estimateSales(this);},
+}
+
+lima.estimate();
+
+
+
+
