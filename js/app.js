@@ -154,32 +154,63 @@ heading.textContent = seattle.city;
 let hoursList = document.createElement('ul');
 cookieArticle.appendChild(hoursList);
 
-for(let i=0; i<seattle.cookiesEachHour.length; i++) {
-    let salesItem = document.createElement('li');
-    hoursList.appendChild(salesItem);
-    const salesInfo = `${timeSlot[i]}: ${seattle.cookiesEachHour[i]} cookies`;
-    salesItem.textContent = salesInfo;
-}
-//That should create the 2 column list of the times (not yet in their correct form) followed by a column that is the list of the contents of the array from line 53
+
+//The next section below should create the 2 column list of the times followed by a column that is the list of the contents of the array
+
+
+    for(let i=0; i<seattle.cookiesEachHour.length; i++) {
+        let salesItem = document.createElement('li');
+        hoursList.appendChild(salesItem);
+        const salesInfo = `${timeSlot[i]}: ${seattle.cookiesEachHour[i]} cookies`;
+        salesItem.textContent = salesInfo;
+    }
+    
+    
+        //generate random customers per hour
+    function estimateCustomers(store){
+        for(let i=0; i<timeSlot.length; i++) {
+            const numberCustomers = randomInRange(store.min, store.max);
+            //push the random number of customers into the custEachHour array
+            store.custEachHour.push(numberCustomers);
+        }
+    }
+    
+    function estimateSales(store){
+        estimateCustomers(store);
+        for(let i=0; i<timeSlot.length; i++) {
+            const hourSales = Math.ceil(store.custEachHour[i] * store.avgCookies); 
+            store.cookiesEachHour.push(hourSales);
+        }
+        return store.cookiesEachHour;
+    }
+    
+    
+    function randomInRange(min, max) {
+        return Math.floor(Math.random() * (max - min +1) + min);
+    }
+    
+
+    //Creating the line showing total sold
+
+    let totalSold = 0;
+for(let i=0; i<timeSlot.length; i++) {
+    console.log(seattle.cookiesEachHour[i]);
+    totalSold+=seattle.cookiesEachHour[i];
+} 
+
+//Now to add the line at the bottom that is the totals
+const totalCookie = document.createElement('li');
+hoursList.appendChild(totalCookie);
+const totalInfo = `Total: ${totalSold} cookies sold`;
+totalCookie.textContent = totalInfo;
+//It appends to what we set as the ul on line 77
 
 
 
-// for(let i=0; i<timeSlot.length; i++) {
-//     let salesItem = document.createElement('li');
-//     hoursList.appendChild(salesItem);
-//     let salesInfo = ''
 
 
-
-    // let numberCustomers = randomInRange(this.min, this.max);
-    // //push the random number of customers into the custEachHour array
-    // this.custEachHour.push(numberCustomers);
-
-
-
-
-
-// Now repeating it for the other cities...
+//--------------------------------------------
+    // Now repeating it for the other cities...
 
 // For Tokyo:
 //  the random number of customers needs to be between 3 and 24
@@ -249,80 +280,42 @@ lima.estimate();
 
 
 
+//-----------------------------------------------
+// Tokyo
 
 
 
-for(let i=0; i<seattle.cookiesEachHour.length; i++) {
-    let salesItem = document.createElement('li');
-    hoursList.appendChild(salesItem);
-    const salesInfo = `${timeSlot[i]}: ${seattle.cookiesEachHour[i]} cookies`;
-    salesItem.textContent = salesInfo;
-}
+// for(let i=0; i<tokyo.cookiesEachHour.length; i++) {
+//     let salesItem = document.createElement('li');
+//     hoursList.appendChild(salesItem);
+//     const salesInfo = `${timeSlot[i]}: ${tokyo.cookiesEachHour[i]} cookies`;
+//     salesItem.textContent = salesInfo;
+// }
 
 
+//     //generate random customers per hour
+// function estimateCustomers(store){
+//     for(let i=0; i<timeSlot.length; i++) {
+//         const numberCustomers = randomInRange(store.min, store.max);
+//         //push the random number of customers into the custEachHour array
+//         store.custEachHour.push(numberCustomers);
+//     }
+// }
 
-    //generate random customers per hour
-function estimateCustomers(store){
-    for(let i=0; i<timeSlot.length; i++) {
-        const numberCustomers = randomInRange(store.min, store.max);
-        //push the random number of customers into the custEachHour array
-        store.custEachHour.push(numberCustomers);
-    }
-}
-
-function estimateSales(store){
-    estimateCustomers(store);
-    for(let i=0; i<timeSlot.length; i++) {
-        const hourSales = Math.ceil(store.custEachHour[i] * store.avgCookies); 
-        store.cookiesEachHour.push(hourSales);
-    }
-    return store.cookiesEachHour;
-}
-
-
-function randomInRange(min, max) {
-    return Math.floor(Math.random() * (max - min +1) + min);
-}
-
-
-//function ...
+// function estimateSales(store){
+//     estimateCustomers(store);
+//     for(let i=0; i<timeSlot.length; i++) {
+//         const hourSales = Math.ceil(store.custEachHour[i] * store.avgCookies); 
+//         store.cookiesEachHour.push(hourSales);
+//     }
+//     return store.cookiesEachHour;
+// }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-//Add to the above
-//let cookiesThisHour = city.sales[i];
-//totalSold += cookiesThisHour;
-// let salesInfo = `${hours[i]}: ${cookiesThisHour[i]} cookies`;
-
-let totalSold = 0;
-for(let i=0; i<timeSlot.length; i++) {
-    console.log(seattle.cookiesEachHour[i]);
-    totalSold+=seattle.cookiesEachHour[i];
-} 
-
-//Now to add the line at the bottom that is the totals
-const totalCookie = document.createElement('li');
-hoursList.appendChild(totalCookie);
-const totalInfo = `Total: ${totalSold} cookies sold`;
-totalCookie.textContent = totalInfo;
-//It appends to what we set as the ul on line 77
-
-
-
-//render seattle
-//render tokyo
-//render 
-//render 
-//render
+// let totalSold2 = 0;
+// for(let i=0; i<timeSlot.length; i++) {
+//     console.log(tokyo.cookiesEachHour[i]);
+//     totalSold2+=tokyo.cookiesEachHour[i];
+// } 
