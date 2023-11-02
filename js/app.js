@@ -504,64 +504,63 @@ const lima = {
 lima.estimate();
 
 
-// //Creates the Dubai heading:
-// let cookieArticle2 = document.createElement('article');
-// javascriptContainer.appendChild(cookieArticle2);
+//Creates the Lima heading:
+let cookieArticle3 = document.createElement('article');
+javascriptContainer.appendChild(cookieArticle3);
 
-// let heading3 = document.createElement('h2');
-// cookieArticle2.appendChild(heading3);
-// heading3.textContent = dubai.city;
-
-
-// //Create an unordered list for Dubai:
-// let hoursList3 = document.createElement('ul');
-// cookieArticle2.appendChild(hoursList3);
+let heading5 = document.createElement('h2');
+cookieArticle3.appendChild(heading5);
+heading5.textContent = lima.city;
 
 
-// for(let i=0; i<dubai.cookiesEachHour.length; i++) {
-//     let salesItem3 = document.createElement('li');
-//     hoursList3.appendChild(salesItem3);
-
-//     let salesInfo3 = `${timeSlot[i]}: ${dubai.cookiesEachHour[i]} cookies`;
-//     salesItem3.textContent = salesInfo3;
-// }
-
-// //Generate random customers per hour
-// function estimateCustomers(store){
-//     for(let i=0; i<timeSlot.length; i++) {
-//         let numberCustomers3 = randomInRange(store.min, store.max);
-
-// // Push the random number of customers into the custEachHour array
-//         store.custEachHour.push(numberCustomers3);
-//     }
-// }
-
-// function estimateSales(store){
-//     estimateCustomers(store);
-//     for(let i=0; i<timeSlot.length; i++) {
-//         const hourSales = Math.ceil(store.custEachHour[i] * store.avgCookies); 
-//         store.cookiesEachHour.push(hourSales);
-//     }
-//     return store.cookiesEachHour;
-// }
+// Create an unordered list for Lima:
+let hoursList5 = document.createElement('ul');
+cookieArticle3.appendChild(hoursList5);
 
 
-// function randomInRange(min, max) {
-//     return Math.floor(Math.random() * (max - min +1) + min);
-// }
+for(let i=0; i<lima.cookiesEachHour.length; i++) {
+    let salesItem5 = document.createElement('li');
+    hoursList5.appendChild(salesItem5);
+
+    let salesInfo5 = `${timeSlot[i]}: ${lima.cookiesEachHour[i]} cookies`;
+    salesItem5.textContent = salesInfo5;
+}
+
+//Generate random customers per hour
+function estimateCustomers(store){
+    for(let i=0; i<timeSlot.length; i++) {
+        let numberCustomers5 = randomInRange(store.min, store.max);
+
+// Push the random number of customers into the custEachHour array
+        store.custEachHour.push(numberCustomers5);
+    }
+}
+
+function estimateSales(store){
+    estimateCustomers(store);
+    for(let i=0; i<timeSlot.length; i++) {
+        const hourSales = Math.ceil(store.custEachHour[i] * store.avgCookies); 
+        store.cookiesEachHour.push(hourSales);
+    }
+    return store.cookiesEachHour;
+}
 
 
-// //Create the total sold loop
-// let totalSold3 = 0;
-// for(let i=0; i<timeSlot.length; i++) {
-// totalSold3+=dubai.cookiesEachHour[i];
-// } 
+function randomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min +1) + min);
+}
 
-// //Add that total sold line at the bottom
-// const totalCookie3 = document.createElement('li');
-// hoursList3.appendChild(totalCookie3);
-// const totalInfo3 = `Total: ${totalSold3} cookies sold`;
-// totalCookie3.textContent = totalInfo3;
+//Create the total sold loop
+let totalSold5 = 0;
+for(let i=0; i<timeSlot.length; i++) {
+totalSold5+=lima.cookiesEachHour[i];
+} 
+
+//Add that total sold line at the bottom
+const totalCookie5 = document.createElement('li');
+hoursList5.appendChild(totalCookie5);
+const totalInfo5 = `Total: ${totalSold5} cookies sold`;
+totalCookie5.textContent = totalInfo5;
 
 
 
