@@ -4,6 +4,11 @@ header{
     color: salmon;
 }
 
+h2{
+    font-family: 'Righteous', sans-serif;
+}
+
+
 nav{
 background-color: salmon;
 color:black;

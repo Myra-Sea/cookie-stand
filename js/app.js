@@ -100,10 +100,9 @@
 
 'use strict';
 
-//Using the DOM to access the <div> in the HTML
-//let root = document.getElementsById('root'),
-const root = document.getElementsById('root');
-//const is used instead of let because is only ever meant to equal
+//Using the DOM to access the <section> in the HTML
+const javascriptContainer = document.getElementById('javascriptGoesHere');
+//const is used instead of let
 
 
 //Creating a value called timeSlot and assigning the list of business hours values to it in an array
@@ -123,12 +122,62 @@ const seattle = {
     min: 23,
     max: 65,
     avgCookies: 6.3,
-    sales: [],
+    custEachHour: [],
+    cookiesEachHour: [],
     //The estimated sales per hour is going to be in the array that gets displayed in the column next to the displayed hour (which is in the array called timeSlot). Continuing to follow the example of using let object = {key: value} would result in let seattle ={estimate: simulatedSalesNumber}  but that should be changed to what's below because... um... well, I'm not sure why... yet.
     estimate:  function(){
-        this.sales = estimateSales(this);},
+        this.cookiesEachHour = estimateSales(this);},
     //which we can call on later using seattle.estimate
 }
+
+//To access the value of the estimate key, you need to use object.estimate
+seattle.estimate();
+
+
+//To create an element to insert into the HTML, we can use either an <article> or a <section> per cookie stand.  Let's use article
+///Below creates a new article element called cookieArticle
+let cookieArticle = document.createElement('article');
+javascriptContainer.appendChild(cookieArticle);
+//Now that an <article> element exists, we can place the <h2> heading elements inside of it!
+
+//Creating the h2 headings inside of the HTML would be:
+let heading = document.createElement('h2');
+cookieArticle.appendChild(heading);
+heading.textContent = seattle.city;
+// That should make the city appear on the screen
+
+
+//Also inside of the <article> element should be the unordered list that displays the business hours
+//There's no need to count how many hours, and we shouldn't either because hours of operation could change.  So it should instead be inferred by the length of the array.
+//Next to that, we also need to create an unordered list of the estimated number of cookies sales per hour
+//Creating an unordered list in the HTML is:
+let hoursList = document.createElement('ul');
+cookieArticle.appendChild(hoursList);
+
+for(let i=0; i<seattle.cookiesEachHour.length; i++) {
+    let salesItem = document.createElement('li');
+    hoursList.appendChild(salesItem);
+    const salesInfo = `${timeSlot[i]}: ${seattle.cookiesEachHour[i]} cookies`;
+    salesItem.textContent = salesInfo;
+}
+//That should create the 2 column list of the times (not yet in their correct form) followed by a column that is the list of the contents of the array from line 53
+
+
+
+// for(let i=0; i<timeSlot.length; i++) {
+//     let salesItem = document.createElement('li');
+//     hoursList.appendChild(salesItem);
+//     let salesInfo = ''
+
+
+
+    // let numberCustomers = randomInRange(this.min, this.max);
+    // //push the random number of customers into the custEachHour array
+    // this.custEachHour.push(numberCustomers);
+
+
+
+
 
 // Now repeating it for the other cities...
 
@@ -141,9 +190,10 @@ let tokyo = {
     min: 3,
     max: 24,
     avgCookies: 1.2,
-    sales: [],
+    custEachHour: [],
+    cookiesEachHour: [],
     estimate:  function(){
-        this.sales = estimateSales(this);},
+        this.cookiesEachHour = estimateSales(this);},
 }
 
 // For Dubai:
@@ -155,9 +205,10 @@ const dubai = {
     min: 11,
     max: 38,
     avgCookies: 3.7,
-    sales: [],
+    custEachHour: [],
+    cookiesEachHour: [],
     estimate:  function(){
-        this.sales = estimateSales(this);},
+        this.cookiesEachHour = estimateSales(this);},
 }
 
 
@@ -170,9 +221,10 @@ const paris = {
     min: 20,
     max: 38,
     avgCookies: 2.3,
-    sales: [],
+    custEachHour: [],
+    cookiesEachHour: [],
     estimate:  function(){
-        this.sales = estimateSales(this);},
+        this.cookiesEachHour = estimateSales(this);},
 }
 
 
@@ -185,34 +237,46 @@ const lima = {
     min: 2,
     max: 16,
     avgCookies: 4.6,
-    sales: [],
+    custEachHour: [],
+    cookiesEachHour: [],
     estimate:  function(){
-        this.sales = estimateSales(this);},
+        this.cookiesEachHour = estimateSales(this);},
 }
 
-
-
-// function simulatedSalesNumber() {
-//     seattle.sales = [6,7,8,9,10,11,12,1,2,3,4];
-// }
-
-
-//To access the value of the estimate key, you need to use object.estimate
-seattle.estimate();
 tokyo.estimate();
 paris.estimate();
 lima.estimate();
 
 
 
-function estimateSales(cookieStand){
-    const sales = [];
-    for(let i=0; i<hours.length; i++) {
-        const numberCustomers = randomInRange(cookieStand.minCustomers, cookieStand.maxCustomers);
-        const hourSales = math.ceil(numberCustomers * cookieStand.avgCookies); 
-        sales.push(hourSales);
+
+
+
+for(let i=0; i<seattle.cookiesEachHour.length; i++) {
+    let salesItem = document.createElement('li');
+    hoursList.appendChild(salesItem);
+    const salesInfo = `${timeSlot[i]}: ${seattle.cookiesEachHour[i]} cookies`;
+    salesItem.textContent = salesInfo;
+}
+
+
+
+    //generate random customers per hour
+function estimateCustomers(store){
+    for(let i=0; i<timeSlot.length; i++) {
+        const numberCustomers = randomInRange(store.min, store.max);
+        //push the random number of customers into the custEachHour array
+        store.custEachHour.push(numberCustomers);
     }
-    return sales;
+}
+
+function estimateSales(store){
+    estimateCustomers(store);
+    for(let i=0; i<timeSlot.length; i++) {
+        const hourSales = Math.ceil(store.custEachHour[i] * store.avgCookies); 
+        store.cookiesEachHour.push(hourSales);
+    }
+    return store.cookiesEachHour;
 }
 
 
@@ -224,32 +288,18 @@ function randomInRange(min, max) {
 //function ...
 
 
-//To create an element to insert into the HTML, we can use either an <article> or a <section> per cookie stand.  Let's use article
-///Below creates a new article element called cookieArticle
-let cookieArticle = document.createElement('article');
-root.appendChild(cookieArticle);
-//Now that an <article> element exists, we can place the <h2> heading elements inside of it!
 
-//Creating the h2 headings inside of the HTML would be:
-let heading = document.createElement('h2');
-cookieArticle.appendChild(heading);
-heading.textContent = city.location;
-// That should make the city appear on the screen
 
-//Also inside of the <article> element should be the unordered list that displays the business hours
-//There's no need to count how many hours, and we shouldn't either because hours of operation could change.  So it should instead be inferred by the length of the array.
-//Next to that, we also need to create an unordered list of the estimated number of cookies sales per hour
-//Creating an unordered list in the HTML is:
-let hoursList = document.createElement('ul');
-cookieArticle.appendChild(hoursList);
 
-for(let i=0; i<seattle.sales.length; i++) {
-    let salesItem = document.createElement('li');
-    hoursList.appendChild(salesItem);
-    const salesInfo = `${timeSlot[i]}: ${seattle.sales[i]} cookies`;
-    salesItem.textContent = salesInfo;
-}
-//That should create the 2 column list of the times (not yet in their correct form) followed by a column that is the list of the contents of the array from line 53
+
+
+
+
+
+
+
+
+
 
 //Add to the above
 //let cookiesThisHour = city.sales[i];
@@ -257,12 +307,15 @@ for(let i=0; i<seattle.sales.length; i++) {
 // let salesInfo = `${hours[i]}: ${cookiesThisHour[i]} cookies`;
 
 let totalSold = 0;
-
+for(let i=0; i<timeSlot.length; i++) {
+    console.log(seattle.cookiesEachHour[i]);
+    totalSold+=seattle.cookiesEachHour[i];
+} 
 
 //Now to add the line at the bottom that is the totals
 const totalCookie = document.createElement('li');
 hoursList.appendChild(totalCookie);
-const totalInfo = 'Total: ${totalSold} cookies sold';
+const totalInfo = `Total: ${totalSold} cookies sold`;
 totalCookie.textContent = totalInfo;
 //It appends to what we set as the ul on line 77
 
@@ -272,4 +325,4 @@ totalCookie.textContent = totalInfo;
 //render tokyo
 //render 
 //render 
-//render 
+//render
