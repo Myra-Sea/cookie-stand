@@ -52,6 +52,13 @@ td{
     padding: 7px;
 }
 
+/* tf{
+    font-family: 'Righteous', sans-serif;
+    font-size: 16pt;
+    background-color: lightgray;
+    padding: 7px;
+} */
+
 footer{
     /* display: flex; */
     align-items: center;

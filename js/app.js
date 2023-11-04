@@ -8,6 +8,11 @@
 //cookiesEachHour = avgCookies * custEachHour
 
 
+//Inside of tables:
+//Table Row = tr
+//Table Header/Footer = th
+
+
 
 //================================================
 //   EACH HOURLY TIME SLOT
@@ -143,10 +148,11 @@ CookieStand.prototype.render = function(){
     //Append that header to the row for the city
     cityRow.appendChild(cityHeadingElem);
 
-    //Inside the other columns insert the number of sales for each hour and append it to the row
+    //Inside the other columns insert the number of sales for each hour
     for (let i = 0; i < timeSlot.length; i++){
         const salesPerStandPerHour = document.createElement('td');
         salesPerStandPerHour.textContent = this.cookiesEachHour[i];
+        //and append it to the row
         cityRow.appendChild(salesPerStandPerHour);
     }
 
@@ -157,110 +163,11 @@ CookieStand.prototype.render = function(){
 
 }
 
-
-
-    // //add the table here
-    // const tableElem = document.createElement('table');
-    // //append it to the <article> element
-    // articleElem.appendChild(tableElem);
-
-    // const headerRow = document.createElement('tr');
-    // //append it to the <table> element
-    // tableElem.appendChild(headerRow);
-
-    // const locationsHeaderCell = document.createElement('th');
-    // //append it to the header row in the table
-    // locationsHeaderCell.textContent = "Locations";
-    // headerRow.appendChild(locationsHeaderCell);
-
-
-    //Could have used the following function FOR loop instead of typing out everything below because I have an hours array in the code
-//for (let i = 0; i<hours.length; i++);{
-//    const currentHour = hours[i];
-
-//    const currentHeaderCell = document.createElement('th');
-//    headerRow.appendChild(locationsHeaderCell);
-//    currentHeaderCell.textContent = currentHour;
-// }
-
-
-
-
-
-
-//     constsixAmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(sixAmHeaderCell);
-//     sixAmHeaderCell.textContent = "6am";
-
-//     constsevenAmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(sevenAmHeaderCell);
-//     sevenAmHeaderCell.textContent = "7am";
-
-//     consteightAmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(eightAmHeaderCell);
-//     eightAmHeaderCell.textContent = "8am";
-
-//     constnineAmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(nineAmHeaderCell);
-//     nineAmHeaderCell.textContent = "9am";
-
-//     consttenAmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(tenAmHeaderCell);
-//     tenAmHeaderCell.textContent = "10am";
-
-//     constelevenAmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(elevenAmHeaderCell);
-//     elevenAmHeaderCell.textContent = "11am";
-
-//     constnoonHeaderCell = document.createElement('th');
-//     headerRow.appendChild(noonHeaderCell);
-//     noonHeaderCell.textContent = "noon";
-
-//     constonePmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(onePmHeaderCell);
-//     onePmHeaderCell.textContent = "1pm";
-
-//     consttwoPmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(twoPmHeaderCell);
-//     twoPmHeaderCell.textContent = "2pm";
-
-//     constthreePmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(threePmHeaderCell);
-//     threePmHeaderCell.textContent = "3pm";
-
-//     constfourPmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(fourPmHeaderCell);
-//     fourPmHeaderCell.textContent = "4pm";
-
-//     constfivePmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(fivePmHeaderCell);
-//     fivePmHeaderCell.textContent = "5pm";
-
-//     constsixPmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(sixPmHeaderCell);
-//     sixPmHeaderCell.textContent = "6pm";
-
-//     constsevenPmHeaderCell = document.createElement('th');
-//     headerRow.appendChild(sevenPmHeaderCell);
-//     sevenPmHeaderCell.textContent = "7pm";
-
-//     constlocationTotalsHeaderCell = document.createElement('th');
-//     headerRow.appendChild(locationTotalsHeaderCell);
-//     locationTotalsHeaderCell.textContent = "Location Totals";
-    
-
-// // add a data row
-//     const dataRow = document.createElement('tr');
-// // append it to the <table> element
-//     tableElem.appendChild(dataRow);
-//}
-
-
-
 //Constructed objects can still use standalone functions when needed.
 function randomInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
 
 
 //==============================================================
@@ -284,26 +191,33 @@ function footerTotals(){
     //Appending that string to the footer row, here at the start of the row
     worldwideSalesPerHourElem.appendChild(footerTitleElem);
 
-    // ---------------------
-    //     //Generating a column for each hourly time slot
-    //     for (let i = 0; i < timeSlot.length; i++){
-    //     const eachHourElem = document.createElement('th');
+    
+    //Generating a row for the worldwide totals of each hourly sale
+    for (let i = 0; i < timeSlot.length; i++){
+        const worldwideHourlyTotalElem = document.createElement('th');
 
-    //     //Writing each hour string at the top of its column
-    //     eachHourElem.textContent = timeSlot[i];
-    //     hoursRowElem.appendChild(eachHourElem);
-    //     }
+    //Writing each worldwide hourly total inside the cells of that footer row
+        worldwideHourlyTotalElem.textContent = '0';
 
-    //     // Creating a variable to hold the header string "Location Totals" inside of
-    //     const locationTotalsHeaderElem = document.createElement('th');
-    //     // Writing the actual string "Location Totals" itself
-    //     locationTotalsHeaderElem.textContent = "Location Totals";
-    //     // Appending that string to the hours row here, at the end of the row
-    //     hoursRowElem.appendChild(locationTotalsHeaderElem);
+    //Appending that content to the footer row
+        worldwideSalesPerHourElem.appendChild(worldwideHourlyTotalElem);
+    }
 
-    //     //Append the article you just created (an article with 1 table row tr containing 3 table headers th's inside) into the container element you created on the page
+
+    //Creating a variable to hold the grand total of all sales worldwide inside of
+    const wordwideGrandTotalElem = document.createElement('th');
+    //Adding up all of the totals to reach the grand worldwide total
+    wordwideGrandTotalElem.textContent = '0' ;
+    //Appending that worldwide grand total to the footer row here, at the very end of the row
+    worldwideSalesPerHourElem.appendChild(wordwideGrandTotalElem);
+
+
+    //Appending this entire article that was created (an article with 1 table row tr containing 3 table headers th's inside it) into the container element you created on the page
     containerElem.appendChild(worldwideSalesPerHourElem);
 }
+
+
+
 
 
 
@@ -340,6 +254,16 @@ lima.render();
 
 //Rendering the footer after the location-specific data
 footerTotals();
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -413,16 +337,74 @@ footerTotals();
 
 
 
-// seattle.renderTable();
-// tokyo.renderTable();
-// dubai.renderTable();
-// paris.renderTable();
-// lima.renderTable();
-
-
-
 
 // ==================================================================
+
+//I could have used the following function FOR loop instead of typing out everything below because I have an hours array in the code
+//      for (let i = 0; i<hours.length; i++);{
+//    const currentHour = hours[i];
+
+
+//     constsixAmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(sixAmHeaderCell);
+//     sixAmHeaderCell.textContent = "6am";
+
+//     constsevenAmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(sevenAmHeaderCell);
+//     sevenAmHeaderCell.textContent = "7am";
+
+//     consteightAmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(eightAmHeaderCell);
+//     eightAmHeaderCell.textContent = "8am";
+
+//     constnineAmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(nineAmHeaderCell);
+//     nineAmHeaderCell.textContent = "9am";
+
+//     consttenAmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(tenAmHeaderCell);
+//     tenAmHeaderCell.textContent = "10am";
+
+//     constelevenAmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(elevenAmHeaderCell);
+//     elevenAmHeaderCell.textContent = "11am";
+
+//     constnoonHeaderCell = document.createElement('th');
+//     headerRow.appendChild(noonHeaderCell);
+//     noonHeaderCell.textContent = "noon";
+
+//     constonePmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(onePmHeaderCell);
+//     onePmHeaderCell.textContent = "1pm";
+
+//     consttwoPmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(twoPmHeaderCell);
+//     twoPmHeaderCell.textContent = "2pm";
+
+//     constthreePmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(threePmHeaderCell);
+//     threePmHeaderCell.textContent = "3pm";
+
+//     constfourPmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(fourPmHeaderCell);
+//     fourPmHeaderCell.textContent = "4pm";
+
+//     constfivePmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(fivePmHeaderCell);
+//     fivePmHeaderCell.textContent = "5pm";
+
+//     constsixPmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(sixPmHeaderCell);
+//     sixPmHeaderCell.textContent = "6pm";
+
+//     constsevenPmHeaderCell = document.createElement('th');
+//     headerRow.appendChild(sevenPmHeaderCell);
+//     sevenPmHeaderCell.textContent = "7pm";
+
+//     constlocationTotalsHeaderCell = document.createElement('th');
+//     headerRow.appendChild(locationTotalsHeaderCell);
+//     locationTotalsHeaderCell.textContent = "Location Totals";
+
 
 
 
@@ -443,12 +425,8 @@ footerTotals();
 // }
 
 
-//footer row
-// let footerRow = 
 
 
-//Create a cell for the store's name
-// let storeCell = document.createElement('td');
 
 
 
