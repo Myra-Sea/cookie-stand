@@ -1,6 +1,4 @@
-
-//header row
-// function header()
+//Notes about the labels of different things
 
 //city = the name of the city that cookie stand location is in
 //min = the minimum number of customers each hour for that location
@@ -8,7 +6,7 @@
 //avgCookies = the average number of cookies each customer buys
 //custEachHour = the randomly generated number of customers who visited the stand during that hour
 //cookiesEachHour = avgCookies * custEachHour
-//sales = 
+
 
 
 //================================================
@@ -20,27 +18,43 @@ const timeSlot = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2p
 //const is used instead of let because the timeSlot column is only ever mean to equal this array
 
 
-// Add a method to render that data into the table
-// The following gives the browser the instructions of what should be done once we call on the render method further below
-// HourlyTimeSlot.prototype.render = function(){
+// Add a function to render the top header line of the table
+// The following line gives the browser the instructions of what should be done once we call on the function further below (at the bottom of the code)
+function headerTimeSlot(){
 
-//     //get the header labelled Locations and put a container to the right of it
-//     const containerElem = document.getElementById('Locations');
+    //Get the 'SalesData'container and add this new headerTimeSlot function to the top of it
+    const containerElem = document.getElementById('SalesData');
 
-//     //each city's data is an article
-//     const hoursRowElem = document.createElement('tr');
+    //Creating a variable for the list of hours and placing it in the table row
+    const hoursRowElem = document.createElement('tr');
 
-//     //Generate a column for each hourly time slot
-//     for (let i = 0; i < timeSlot.length; i++){
-//     const eachHourElem = document.createElement('th');
+    //Creating a variable to hold the header string "Location" inside of
+    const locationElem = document.createElement('th');
+    //Writing the string "Location" inside of the table cell
+    locationElem.textContent = "Locations";
+    //Appending that string to the hours row, here at the start of the row
+    hoursRowElem.appendChild(locationElem);
 
-//     //Write each hour at the top of its column
-//     eachHourElem.textContent = timeSlot[i];
-//     hoursRowElem.appendChild(eachHourElem);
-//     }
+    //Generating a column for each hourly time slot
+    for (let i = 0; i < timeSlot.length; i++){
+    const eachHourElem = document.createElement('th');
 
-//     //Append the article you just created (an article with th and tr inside) into the container element you created on the page alongside of the "Locations" heading
-//     containerElem.appendChild(hoursRowElem);
+    //Writing each hour string at the top of its column
+    eachHourElem.textContent = timeSlot[i];
+    hoursRowElem.appendChild(eachHourElem);
+    }
+
+    // Creating a variable to hold the header string "Location Totals" inside of
+    const locationTotalsHeaderElem = document.createElement('th');
+    // Writing the actual string "Location Totals" itself
+    locationTotalsHeaderElem.textContent = "Location Totals";
+    // Appending that string to the hours row here, at the end of the row
+    hoursRowElem.appendChild(locationTotalsHeaderElem);
+
+    //Append the article you just created (an article with 1 table row tr containing 3 table headers th's inside) into the container element you created on the page
+    containerElem.appendChild(hoursRowElem);
+}
+
 
 
 //=================================================
@@ -89,10 +103,7 @@ function CookieStand(city, min, max, avgCookies) {
 // Remember to use that keyword "new" because it is what allows "this." to refer to the currently created object
 
 
-
-
-//But before adding that line of code I first need to add a method for this.generateEstimate and the method needs to go in the prototype
-//The method needs to be bound to a given object
+//But before adding that line of code I first need to add a method for the constructor function this.generateEstimate and the method needs to go in the prototype.  The method needs to be bound to a given object
 
 CookieStand.prototype.generateEstimate = function(){
 
@@ -121,25 +132,6 @@ CookieStand.prototype.render = function(){
 
     //get the table labelled SalesData and put a container there
     const containerElem = document.getElementById('SalesData');
-
-//========================================================
-
-    //each city's data is an article
-    const hoursRowElem = document.createElement('tr');
-
-    //Generate a column for each hourly time slot
-    for (let i = 0; i < timeSlot.length; i++){
-    const eachHourElem = document.createElement('th');
-
-    //Write each hour at the top of its column
-    eachHourElem.textContent = timeSlot[i];
-    hoursRowElem.appendChild(eachHourElem);
-    }
-
-    //Append the article you just created (an article with th and tr inside) into the container element you created on the page in the div
-    containerElem.appendChild(hoursRowElem);
-
-    //===================================================
 
     //Each city gets it's own row in the table
     const cityRow = document.createElement('tr');
@@ -182,8 +174,7 @@ CookieStand.prototype.render = function(){
     // headerRow.appendChild(locationsHeaderCell);
 
 
-
-//Could have used the following function FOR loop instead of typing out everything below because I have an hours array in the code
+    //Could have used the following function FOR loop instead of typing out everything below because I have an hours array in the code
 //for (let i = 0; i<hours.length; i++);{
 //    const currentHour = hours[i];
 
@@ -191,6 +182,11 @@ CookieStand.prototype.render = function(){
 //    headerRow.appendChild(locationsHeaderCell);
 //    currentHeaderCell.textContent = currentHour;
 // }
+
+
+
+
+
 
 //     constsixAmHeaderCell = document.createElement('th');
 //     headerRow.appendChild(sixAmHeaderCell);
@@ -261,17 +257,61 @@ CookieStand.prototype.render = function(){
 
 
 
-
-
 //Constructed objects can still use standalone functions when needed.
 function randomInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 
+//==============================================================
+//                   FOOTER ROW
+//=============================================================
+
+// // Add a function to render the bottom (footer) line of the table
+function footerTotals(){
+    // // The following section gives the browser the instructions of what should be done once we call on that function further below (at the bottom of the code)
+
+    //Get the 'SalesData' container and add this new footerTotals function to the bottom of it
+    const containerElem = document.getElementById('SalesData');
+
+    //Creating a variable for the list of total sales worldwide and then place it in a table row
+    const worldwideSalesPerHourElem = document.createElement('tr');
+
+    //Creating a variable to hold the footer string "Hourly Totals Worldwide" inside
+    const footerTitleElem = document.createElement('th');
+    //Writing the string "Hourly Totals Worldwide" itself inside of a table cell
+    footerTitleElem.textContent = "Hourly Totals Worldwide";
+    //Appending that string to the footer row, here at the start of the row
+    worldwideSalesPerHourElem.appendChild(footerTitleElem);
+
+    // ---------------------
+    //     //Generating a column for each hourly time slot
+    //     for (let i = 0; i < timeSlot.length; i++){
+    //     const eachHourElem = document.createElement('th');
+
+    //     //Writing each hour string at the top of its column
+    //     eachHourElem.textContent = timeSlot[i];
+    //     hoursRowElem.appendChild(eachHourElem);
+    //     }
+
+    //     // Creating a variable to hold the header string "Location Totals" inside of
+    //     const locationTotalsHeaderElem = document.createElement('th');
+    //     // Writing the actual string "Location Totals" itself
+    //     locationTotalsHeaderElem.textContent = "Location Totals";
+    //     // Appending that string to the hours row here, at the end of the row
+    //     hoursRowElem.appendChild(locationTotalsHeaderElem);
+
+    //     //Append the article you just created (an article with 1 table row tr containing 3 table headers th's inside) into the container element you created on the page
+    containerElem.appendChild(worldwideSalesPerHourElem);
+}
+
+
+
+//====================================================
+//     ASSIGN THE COOKIESTAND CONSTRUCTOR TO EACH LOCATION
+//==================================================== 
 
 const seattle = new CookieStand('Seattle', 23, 65, 6.3);
-// Oops! The whole point of using a constructor function was that I should have just written
 const tokyo = new CookieStand('Tokyo', 3, 24, 1.2);
 const dubai = new CookieStand('Dubai', 11, 38, 3.7);
 const paris = new CookieStand('Paris', 20, 38, 2.3);
@@ -283,6 +323,14 @@ console.log(seattle)
 console.log(tokyo)
 
 
+
+//====================================================
+//    TELL THE SOFTWARE TO RUN
+//====================================================
+
+//Rendering header before the location-specific data
+headerTimeSlot();
+
 //Running the commands, causing stuff to show up on the screen
 seattle.render();
 tokyo.render();
@@ -290,11 +338,26 @@ dubai.render();
 paris.render();
 lima.render();
 
+//Rendering the footer after the location-specific data
+footerTotals();
 
 
 
 
 
+
+
+
+//=====================================================
+//   LEFTOVER NOTES TO MYSELF
+//=====================================================
+// Oops! The whole point of using a constructor function was that I should have just written
+//
+// const tokyo = new CookieStand('Tokyo', 3, 24, 1.2);
+// const dubai = new CookieStand('Dubai', 11, 38, 3.7);
+// const paris = new CookieStand('Paris', 20, 38, 2.3);
+// const lima = new CookieStand('Lima', 2, 16, 4.6);
+//
 //INSTEAD OF WRITING OUT ALL OF THIS:
 //
 // function TokyoCookieStand(city, min, max, avgCookies) {
