@@ -11,11 +11,41 @@
 //sales = 
 
 
-
+//================================================
+//   EACH HOURLY TIME SLOT
+// ===============================================
+//
 //Create time slots
 const timeSlot = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm']
 //const is used instead of let because the timeSlot column is only ever mean to equal this array
 
+
+// Add a method to render that data into the table
+// The following gives the browser the instructions of what should be done once we call on the render method further below
+// HourlyTimeSlot.prototype.render = function(){
+
+//     //get the header labelled Locations and put a container to the right of it
+//     const containerElem = document.getElementById('Locations');
+
+//     //each city's data is an article
+//     const hoursRowElem = document.createElement('tr');
+
+//     //Generate a column for each hourly time slot
+//     for (let i = 0; i < timeSlot.length; i++){
+//     const eachHourElem = document.createElement('th');
+
+//     //Write each hour at the top of its column
+//     eachHourElem.textContent = timeSlot[i];
+//     hoursRowElem.appendChild(eachHourElem);
+//     }
+
+//     //Append the article you just created (an article with th and tr inside) into the container element you created on the page alongside of the "Locations" heading
+//     containerElem.appendChild(hoursRowElem);
+
+
+//=================================================
+//        EACH COOKIE STAND
+// ================================================
 //Every cookie stand object has a 
 //city: 'string',
 //min: number,
@@ -26,7 +56,6 @@ const timeSlot = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2p
 // We created Lab 6 using object literals
 // However, since every cookie stand object NEEDS to have those same key/value pairs, we should have used constructor functions instead
 // Start the name of a constructor function with a capital letter and pass arguments into it
-
 // Example: 
 // function = Kitten(name, interests, isGoodWithDogs){
 //      this.name = name;
@@ -90,23 +119,27 @@ CookieStand.prototype.generateEstimate = function(){
 //The following gives the browser the instructions of what should be done once we call on the render method further below
 CookieStand.prototype.render = function(){
 
-    //get the div "container" for SalesData and put a container there
+    //get the table labelled SalesData and put a container there
     const containerElem = document.getElementById('SalesData');
+
+//========================================================
 
     //each city's data is an article
     const hoursRowElem = document.createElement('tr');
 
-    //Generate a column for each time slot
+    //Generate a column for each hourly time slot
     for (let i = 0; i < timeSlot.length; i++){
     const eachHourElem = document.createElement('th');
 
-    //Write the hour at the top of its column
+    //Write each hour at the top of its column
     eachHourElem.textContent = timeSlot[i];
     hoursRowElem.appendChild(eachHourElem);
     }
 
     //Append the article you just created (an article with th and tr inside) into the container element you created on the page in the div
     containerElem.appendChild(hoursRowElem);
+
+    //===================================================
 
     //Each city gets it's own row in the table
     const cityRow = document.createElement('tr');
@@ -130,6 +163,10 @@ CookieStand.prototype.render = function(){
 
 
 
+}
+
+
+
     // //add the table here
     // const tableElem = document.createElement('table');
     // //append it to the <article> element
@@ -143,8 +180,6 @@ CookieStand.prototype.render = function(){
     // //append it to the header row in the table
     // locationsHeaderCell.textContent = "Locations";
     // headerRow.appendChild(locationsHeaderCell);
-
-
 
 
 
@@ -222,10 +257,10 @@ CookieStand.prototype.render = function(){
 //     const dataRow = document.createElement('tr');
 // // append it to the <table> element
 //     tableElem.appendChild(dataRow);
+//}
 
 
 
-}
 
 
 //Constructed objects can still use standalone functions when needed.
@@ -236,18 +271,29 @@ function randomInRange(min, max) {
 
 
 const seattle = new CookieStand('Seattle', 23, 65, 6.3);
-console.log(seattle)
 // Oops! The whole point of using a constructor function was that I should have just written
 const tokyo = new CookieStand('Tokyo', 3, 24, 1.2);
 const dubai = new CookieStand('Dubai', 11, 38, 3.7);
 const paris = new CookieStand('Paris', 20, 38, 2.3);
 const lima = new CookieStand('Lima', 2, 16, 4.6);
 
+
+//Console logging for two of the cities to double check that the numbers on screen match to what was generated
+console.log(seattle)
+console.log(tokyo)
+
+
+//Running the commands, causing stuff to show up on the screen
 seattle.render();
 tokyo.render();
 dubai.render();
 paris.render();
 lima.render();
+
+
+
+
+
 
 //INSTEAD OF WRITING OUT ALL OF THIS:
 //

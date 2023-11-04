@@ -4,20 +4,48 @@ header{
     color: salmon;
 }
 
-h2{
-    font-family: 'Righteous', sans-serif;
+header h1{
+    height: 95px;
 }
-
 
 nav{
-background-color: salmon;
-color:black;
+    background-color: salmon;
+    color:black;
+}
+    
+nav li{
+        display: inline-block; text-decoration: none; padding: 2%;
+        height: 1px;
 }
 
-nav li {
-    display: inline-block; text-decoration: none; padding: 2%;
+
+
+/* main {
+    display: flex;
+    width: 90% ;
+    align-items: center;
+} */
+
+
+h2 {
+    font-family: 'Righteous', sans-serif;
+    font-size: 18pt;
+}
+
+
+th{
+    font-family: 'Righteous', sans-serif;
+    font-size: 16pt;
+    background-color: lightgray;
+    padding: 7px;
+}
+
+td{
+    background-color: salmon;
+    padding: 7px;
 }
 
 footer{
     background-color: lightgrey;
+    margin-top: 30px;
 }
