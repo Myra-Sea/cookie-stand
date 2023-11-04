@@ -47,6 +47,8 @@ th{
 
 td{
     background-color: salmon;
+    font-weight: bold;
+    text-align: center;
     padding: 7px;
 }
 
