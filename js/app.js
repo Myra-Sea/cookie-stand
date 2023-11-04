@@ -2,6 +2,13 @@
 //header row
 // function header()
 
+//city = the name of the city that cookie stand location is in
+//min = the minimum number of customers each hour for that location
+//max = the maximum number of customers each hour for that location
+//avgCookies = the average number of cookies each customer buys
+//custEachHour = the randomly generated number of customers who visited the stand during that hour
+//cookiesEachHour = avgCookies * custEachHour
+//sales = 
 
 
 
@@ -52,20 +59,27 @@ function CookieStand(city, min, max, avgCookies) {
 // const seattle = new CookieStand('Seattle', 23, 65, 6.3, []);
 // Remember to use that keyword "new" because it is what allows "this." to refer to the currently created object
 
+
+
+
 //But before adding that line of code I first need to add a method for this.generateEstimate and the method needs to go in the prototype
 //The method needs to be bound to a given object
 
 CookieStand.prototype.generateEstimate = function(){
-    //generate random customers per hour
+
+    //generate random number of customers per hour:
     for(let i=0; i<timeSlot.length; i++) {
         const numberCustomers = randomInRange(this.min, this.max);
-        //generate number of cookie sales each hour
+
+        //generate number of cookie sales each hour:
         const randCookieNumber = Math.ceil(numberCustomers * this.avgCookies);
         //Math.ceil rounds up to the next whole number
         // console.log(randCookieNumber);
-        //push the random number of customers into the custEachHour array
+
+        //push the random number of customers into the custEachHour array:
         this.custEachHour.push(numberCustomers);
-        //push the random number of cookies into the cookiesEachHour array
+        
+        //push the random number of cookies into the cookiesEachHour array:
         this.cookiesEachHour.push(randCookieNumber);
     }
     return this.cookiesEachHour;    
@@ -76,34 +90,42 @@ CookieStand.prototype.generateEstimate = function(){
 //The following gives the browser the instructions of what should be done once we call on the render method further below
 CookieStand.prototype.render = function(){
 
-    //get the div "container" for SalesData
+    //get the div "container" for SalesData and put a container there
     const containerElem = document.getElementById('SalesData');
 
     //each city's data is an article
     const hoursRowElem = document.createElement('tr');
 
+    //Generate a column for each time slot
     for (let i = 0; i < timeSlot.length; i++){
     const eachHourElem = document.createElement('th');
+
+    //Write the hour at the top of its column
     eachHourElem.textContent = timeSlot[i];
     hoursRowElem.appendChild(eachHourElem);
     }
 
-    //append it to the container element
+    //Append the article you just created (an article with th and tr inside) into the container element you created on the page in the div
     containerElem.appendChild(hoursRowElem);
 
+    //Each city gets it's own row in the table
     const cityRow = document.createElement('tr');
 
-    const headingElem = document.createElement('td');
-    //append it to the <article> element
-    headingElem.textContent = this.city;
-    cityRow.appendChild(headingElem);
+    //Inside the first column of that row, write the name of the city:
+    const cityHeadingElem = document.createElement('td');
+    cityHeadingElem.textContent = this.city;
 
+    //Append that header to the row for the city
+    cityRow.appendChild(cityHeadingElem);
+
+    //Inside the other columns insert the number of sales for each hour and append it to the row
     for (let i = 0; i < timeSlot.length; i++){
-        const eachCookieElem = document.createElement('td');
-        eachCookieElem.textContent = "0";
-        cityRow.appendChild(eachCookieElem);
+        const salesPerStandPerHour = document.createElement('td');
+        salesPerStandPerHour.textContent = this.cookiesEachHour[i];
+        cityRow.appendChild(salesPerStandPerHour);
     }
 
+    //Append that row into the container on the page
     containerElem.appendChild(cityRow);
 
 
