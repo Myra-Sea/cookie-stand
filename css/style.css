@@ -5,7 +5,12 @@ header{
 }
 
 header h1{
-    height: 95px;
+    /* display: flex;
+    align-items: center; */
+    text-align: center;
+    font-family: 'Righteous', sans-serif;
+    /* height: 95px; */
+    padding: 40px;
 }
 
 nav{
@@ -46,6 +51,11 @@ td{
 }
 
 footer{
+    /* display: flex; */
+    align-items: center;
     background-color: lightgrey;
     margin-top: 30px;
+    text-align: center;
+    padding: 30px;
+    /* height: 80px; */
 }
