@@ -11,6 +11,7 @@
 //Inside of tables:
 //Table Row = tr
 //Table Header/Footer = th
+//salmon colored Table Data = td
 
 
 
@@ -90,7 +91,10 @@ function CookieStand(city, min, max, avgCookies) {
     this.custEachHour = [];
     this.cookiesEachHour = [];    
     this.sales = this.generateEstimate();
+    this.allShopArray.push(this);
 }
+// Create an array to hold all of the hourly totals for each city.  You will need this later in order to add them up.
+CookieStand.prototype.allShopArray = [];
 
 // THE ABOVE ALLOWS THE CONVERSION OF
 
@@ -156,10 +160,24 @@ CookieStand.prototype.render = function(){
         cityRow.appendChild(salesPerStandPerHour);
     }
 
+
+    //Create the variable called eachStoreTotal
+    const eachStoreTotal = document.createElement('td')
+    let tempTotal = 0;
+    //Create a loop adding each cookiesEachHour total to the previous one in its array
+    for (let i = 0; i < this.cookiesEachHour.length; i++){
+        //Set the value to zero
+ 
+        tempTotal += this.cookiesEachHour[i];
+    //     //Writing that total in the last cell of the row
+        eachStoreTotal.textContent = `${tempTotal}`;
+        // console.log (tempTotal)
+    //Append it to the row
+        cityRow.appendChild(eachStoreTotal);
+    }
+
     //Append that row into the container on the page
     containerElem.appendChild(cityRow);
-
-
 
 }
 
@@ -191,23 +209,29 @@ function footerTotals(){
     //Appending that string to the footer row, here at the start of the row
     worldwideSalesPerHourElem.appendChild(footerTitleElem);
 
-    
+
+
+    let totalOfTotals = 0;
     //Generating a row for the worldwide totals of each hourly sale
     for (let i = 0; i < timeSlot.length; i++){
+        let hourTotal = 0;
         const worldwideHourlyTotalElem = document.createElement('th');
-
-    //Writing each worldwide hourly total inside the cells of that footer row
-        worldwideHourlyTotalElem.textContent = '0';
-
-    //Appending that content to the footer row
+        //Appending that content to the footer row
         worldwideSalesPerHourElem.appendChild(worldwideHourlyTotalElem);
+    //Writing each worldwide hourly total inside the cells of that footer row
+
+        for (let j = 0; j < CookieStand.prototype.allShopArray.length; j++) {
+                hourTotal += CookieStand.prototype.allShopArray[j].cookiesEachHour[i];
+             totalOfTotals += CookieStand.prototype.allShopArray[j].cookiesEachHour[i];
+        }
+            worldwideHourlyTotalElem.textContent = `${hourTotal}`;
     }
 
 
     //Creating a variable to hold the grand total of all sales worldwide inside of
     const wordwideGrandTotalElem = document.createElement('th');
     //Adding up all of the totals to reach the grand worldwide total
-    wordwideGrandTotalElem.textContent = '0' ;
+    wordwideGrandTotalElem.textContent = `${totalOfTotals}` ;
     //Appending that worldwide grand total to the footer row here, at the very end of the row
     worldwideSalesPerHourElem.appendChild(wordwideGrandTotalElem);
 
@@ -412,12 +436,14 @@ footerTotals();
 
 
 //calculate Daily hourly total and overall total for all locations using nested for loop
-// for (let i=0; i < time.length; i++) {
+//  let totalOfTotals = 0;
+// for (let i=0; i < timeSlot.length; i++) {
 //     let hourTotal = 0;
-//     const hourlyTotalData = documet.createElement("td");
+//     const hourTotalData = document.createElement("td");
 //     headerRowTotal.appendChild(hourlyTotalData);
 //     for (let j = 0; j < cities.length; j++) {
 //         hourTotal += cities[j].hourlyCookies[i];
+//  totalOfTotals += 
 //     }
 //     hourlyTotalData.textContent = hourTotal;
 //     totalAllLocations += hourTotal;
