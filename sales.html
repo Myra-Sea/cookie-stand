@@ -24,6 +24,29 @@
 
     <main>
         <h2></h2>
+        <form id="openNewCookieStore">
+            <fieldset>
+                <legend>Add a new store to the table!</legend>
+                <label for="newStoreName">Location City</label>
+                <input name="newStoreName" type="text" />
+
+                <label for="minimum">Minimum Customers Per Hour</label>
+                <input name="minimum" type="number" />
+
+                <label for="maximum">Maximum Customers Per Hour</label>
+                <input name="maximum" type="number" />
+
+                <label for="averageCookies">Average Cookies Per Sale</label>
+                <input name="averageCookies" type="number" />
+
+                <button type="submit">Click here to add</button>
+                
+            </fieldset>
+
+        </form>
+
+
+
         <table id="SalesData">
             <!-- generate all of the content between the article tags from JavaScript
             <article> [1 per city]
