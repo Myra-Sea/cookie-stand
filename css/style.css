@@ -26,6 +26,15 @@ nav li{
         font-size: 16pt;
 }
 
+form{
+    margin: 30pt;
+}
+
+legend{
+    color: salmon;
+    font-family: 'Righteous', sans-serif;
+}
+
 h1{
     font-family: 'Righteous', sans-serif;
     font-size: 44pt;
