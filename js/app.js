@@ -188,6 +188,27 @@ function randomInRange(min, max) {
 
 
 
+//==========================================
+// TAKE INPUT FROM THE FORM AND CONVERT INTO BEING A NEW COOKIE STAND
+//==========================================
+
+const newStore = document.getElementById('openNewCookieStore');
+openNewCookieStore.addEventListener('submit', 
+function(event){
+    event.preventDefault();
+    const newCity = event.target.newStoreName.value;
+    const newMin = event.target.minimum.value;
+    const newMax = event.target.maximum.value;
+    const newAvgCookies = event.target.averageCookies.value;
+
+    const tempDataHolder = new CookieStand(newCity, newMin, newMax, newAvgCookies);
+    CookieStand.prototype.allShopArray.push(tempDataHolder);
+    tempDataHolder.render();
+    footerTotals();
+});
+
+
+
 //==============================================================
 //                   FOOTER ROW
 //=============================================================
@@ -259,6 +280,17 @@ const lima = new CookieStand('Lima', 2, 16, 4.6);
 //Console logging for two of the cities to double check that the numbers on screen match to what was generated
 console.log(seattle)
 console.log(tokyo)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
