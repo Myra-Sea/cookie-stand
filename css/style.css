@@ -75,6 +75,10 @@ th{
     padding: 7px;
 }
 
+.TotalsColumn{
+    background-color: lightgray;
+}
+
 td{
     background-color: salmon;
     font-weight: bold;

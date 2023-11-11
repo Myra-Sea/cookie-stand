@@ -15,6 +15,14 @@
 
 
 
+//Get the 'SalesData' container and add this new footerTotals function to the bottom of it
+const containerElem = document.getElementById('SalesData');
+
+//Creating a variable for the list of total sales worldwide and then place it in a table row
+const worldwideSalesPerHourElem = document.createElement('tr');
+
+
+
 //================================================
 //   EACH HOURLY TIME SLOT
 // ===============================================
@@ -163,6 +171,7 @@ CookieStand.prototype.render = function(){
 
     //Create the variable called eachStoreTotal
     const eachStoreTotal = document.createElement('td')
+    eachStoreTotal.classList.add('TotalsColumn');
     let tempTotal = 0;
     //Create a loop adding each cookiesEachHour total to the previous one in its array
     for (let i = 0; i < this.cookiesEachHour.length; i++){
@@ -204,6 +213,7 @@ function(event){
     const tempDataHolder = new CookieStand(newCity, newMin, newMax, newAvgCookies);
     CookieStand.prototype.allShopArray.push(tempDataHolder);
     tempDataHolder.render();
+    worldwideSalesPerHourElem.innerHTML = '';
     footerTotals();
 });
 
@@ -217,12 +227,7 @@ function(event){
 function footerTotals(){
     // // The following section gives the browser the instructions of what should be done once we call on that function further below (at the bottom of the code)
 
-    //Get the 'SalesData' container and add this new footerTotals function to the bottom of it
-    const containerElem = document.getElementById('SalesData');
-
-    //Creating a variable for the list of total sales worldwide and then place it in a table row
-    const worldwideSalesPerHourElem = document.createElement('tr');
-
+    
     //Creating a variable to hold the footer string "Hourly Totals Worldwide" inside
     const footerTitleElem = document.createElement('th');
     //Writing the string "Hourly Totals Worldwide" itself inside of a table cell
