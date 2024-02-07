@@ -15,9 +15,18 @@ header h1{
     margin: 0 auto;
 }
 
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
 nav{
     background-color: salmon;
     color:black;
+    text-align: center;
 }
     
 nav li{
